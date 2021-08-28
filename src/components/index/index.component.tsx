@@ -1,14 +1,7 @@
 import React from "react";
 import './index.component.css'
 import {Contract} from "web3-eth-contract";
-
-interface IIndex {
-    ethPriceInWei: string;
-    name: string;
-    percentageChange: string;
-    usdCapitalization: string;
-    usdPriceInCents: string;
-}
+import {IIndex} from "../../core/interfaces/index.interface";
 
 class IndexComponent extends React.Component<{ indexId: string, contract?: Contract }, { data?: IIndex, isLoading: boolean }> {
     constructor(props: { indexId: string, contract?: Contract }) {

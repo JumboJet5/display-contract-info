@@ -6,7 +6,7 @@ import GroupComponent from './components/group/group.component';
 import contractInterface from './core/consts/contract-interafce';
 import HeaderComponent from "./components/header/header.component";
 
-class App extends React.Component<{}, {contract?: Contract, groupIds: string[], web3?: Web3, isLoading: boolean}> {
+class App extends React.Component<{}, { contract?: Contract, groupIds: string[], web3?: Web3, isLoading: boolean }> {
     constructor(props: any) {
         super(props);
         this.state = {groupIds: [], isLoading: true};

@@ -2,11 +2,8 @@ import React from 'react';
 import {Contract} from 'web3-eth-contract';
 import './group.component.css'
 import IndexComponent from "../index/index.component";
+import {IGroup} from "../../core/interfaces/group.interface";
 
-interface IGroup {
-    indexes: string[];
-    name: string;
-}
 
 class GroupComponent extends React.Component<{ groupId: string, contract?: Contract }, { group?: IGroup, isLoading: boolean }> {
     constructor(public props: { groupId: string, contract?: Contract }) {
