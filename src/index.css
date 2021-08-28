@@ -1,16 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Inter, sans-serif;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: black;
 
   background: linear-gradient(180deg, rgba(63, 92, 166, 0.05) 0%, rgba(255, 255, 255, 0) 89.03%),
               linear-gradient(0deg, #F8F8FA, #F8F8FA) no-repeat;
   display: grid;
   min-height: 100vh;
   align-content: start;
+
+  --card-percents: #03CEA4;
 }
 
 body * {
@@ -25,5 +29,5 @@ code {
 #root {
   width: clamp(288px, 100%, 1212px);
   margin: auto;
-  padding: 0 16px 116px;
+  padding: 0 16px 40px;
 }

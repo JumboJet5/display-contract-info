@@ -47,7 +47,7 @@ class IndexComponent extends React.Component<{ indexId: string, contract?: Contr
     private _getCapitalizations(priceInCents?: string,
                                 options: Intl.NumberFormatOptions = {
                                     minimumFractionDigits: 2,
-                                    maximumFractionDigits: 8
+                                    maximumFractionDigits: 2
                                 }): string {
         return priceInCents ? (+priceInCents / 100).toLocaleString('en', options) : '-';
     }

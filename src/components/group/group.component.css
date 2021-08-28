@@ -7,8 +7,6 @@
 .group:not([data-loaded])::after {
     content: 'Group loading...';
 
-    font-family: Inter, sans-serif;
-    font-style: normal;
     font-weight: 600;
     font-size: 24px;
 
@@ -24,8 +22,6 @@
 }
 
 .group-title {
-    font-family: Inter, sans-serif;
-    font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 112.4%;

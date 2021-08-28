@@ -4,8 +4,6 @@ header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    font-family: Inter, sans-serif;
-    font-style: normal;
 }
 
 header button {
@@ -25,6 +23,5 @@ header button {
     font-weight: 600;
     font-size: 20px;
     line-height: 22px;
-    color: #000000;
     text-decoration: none;
 }
