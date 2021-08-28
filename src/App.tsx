@@ -4,6 +4,7 @@ import {Contract} from 'web3-eth-contract';
 import './App.css';
 import GroupComponent from './components/group/group.component';
 import contractInterface from './core/consts/contract-interafce';
+import HeaderComponent from "./components/header/header.component";
 
 class App extends React.Component<{}, {contract?: Contract, groupIds: string[], web3?: Web3, isLoading: boolean}> {
     constructor(props: any) {
@@ -27,7 +28,9 @@ class App extends React.Component<{}, {contract?: Contract, groupIds: string[], 
         const groups = this.state.groupIds
             ?.map(groupId => <GroupComponent groupId={groupId} contract={this.state.contract} key={groupId}/>)
         return (
-            <div className="App">
+            <div className="app">
+                <HeaderComponent/>
+                <h1>All Indexes</h1>
                 {groups}
             </div>
         );

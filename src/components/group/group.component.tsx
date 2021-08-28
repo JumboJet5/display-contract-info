@@ -1,5 +1,6 @@
 import React from 'react';
 import {Contract} from 'web3-eth-contract';
+import './group.component.css'
 import IndexComponent from "../index/index.component";
 
 interface IGroup {
@@ -23,8 +24,8 @@ class GroupComponent extends React.Component<{ groupId: string, contract?: Contr
             ?.map(indexId => <IndexComponent indexId={indexId} contract={this.props.contract} key={indexId}/>)
         return (
             <div className="group">
-                <h2 className="group-title">{this.state.group?.name}</h2>
-                <div>{indexes}</div>
+                <div className="group-title">{this.state.group?.name}</div>
+                <div className="indexes-wrapper">{indexes}</div>
             </div>
         );
     }

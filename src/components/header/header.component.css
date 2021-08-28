@@ -1,0 +1,30 @@
+header {
+    margin: 24px 0 34px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+}
+
+header button {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: transparent;
+    padding: 7px 21px;
+    cursor: pointer;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+    color: #000000;
+    text-decoration: none;
+}

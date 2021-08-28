@@ -1,0 +1,50 @@
+.index-card {
+    min-width: 287px;
+    min-height: 133px;
+    background: #FFFFFF;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25),
+                0 0 5px rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+    padding: 20px 20px 24px;
+
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    color: #000000;
+}
+
+.index-name {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+}
+
+.index-conversation {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    margin: 10px 0 20px;
+}
+
+.index-capitalization {
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    margin-right: 8px;
+}
+
+.additional-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.index-percentage {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    color: #03CEA4;
+}

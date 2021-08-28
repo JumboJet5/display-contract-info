@@ -1,0 +1,20 @@
+.group {
+    margin: 40px 0;
+}
+
+.group-title {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 112.4%;
+    align-items: center;
+    letter-spacing: -0.02em;
+    margin: 24px 0 16px;
+}
+
+.indexes-wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(287px, 1fr));
+}
