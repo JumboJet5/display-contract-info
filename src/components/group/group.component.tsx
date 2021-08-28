@@ -23,10 +23,13 @@ class GroupComponent extends React.Component<{ groupId: string, contract?: Contr
         const indexes = this.state.group?.indexes
             ?.map(indexId => <IndexComponent indexId={indexId} contract={this.props.contract} key={indexId}/>)
         return (
-            <div className="group">
-                <div className="group-title">{this.state.group?.name}</div>
-                <div className="indexes-wrapper">{indexes}</div>
-            </div>
+
+            this.state.isLoading
+                ? <div className="group"/>
+                : <div className="group" data-loaded="true">
+                    <div className="group-title">{this.state.group?.name}</div>
+                    <div className="indexes-wrapper">{indexes}</div>
+                </div>
         );
     }
 

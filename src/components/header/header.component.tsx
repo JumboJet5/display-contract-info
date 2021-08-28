@@ -4,7 +4,7 @@ function HeaderComponent() {
     return (
         <header>
             <a className="logo" href="/">Logotype</a>
-            <button>Connect wallet</button>
+            <button onClick={() => console.log('Do nothing')}>Connect wallet</button>
         </header>
     )
 }

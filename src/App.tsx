@@ -31,7 +31,7 @@ class App extends React.Component<{}, {contract?: Contract, groupIds: string[], 
             <div className="app">
                 <HeaderComponent/>
                 <h1>All Indexes</h1>
-                {groups}
+                <div className="groups-wrapper" data-loaded={!this.state.isLoading}>{groups}</div>
             </div>
         );
     }

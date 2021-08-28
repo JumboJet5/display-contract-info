@@ -23,16 +23,19 @@ class IndexComponent extends React.Component<{ indexId: string, contract?: Contr
 
     public render(): JSX.Element {
         return (
-            <div className="index-card">
-                <div className="index-name">{this.state.data?.name}</div>
-                <div className="index-conversation">$100
-                    / {this._getConversation(this.state.data?.usdPriceInCents)} ETH
+            this.state.isLoading
+                ? <div className="index-card"/>
+                : <div className="index-card" data-loaded="true">
+                    <div className="index-name">{this.state.data?.name}</div>
+                    <div className="index-conversation">$100
+                        / {this._getConversation(this.state.data?.usdPriceInCents)} ETH
+                    </div>
+                    <div className="additional-row">
+                        <div
+                            className="index-capitalization">{this._getCapitalizations(this.state.data?.usdCapitalization)}</div>
+                        <div className="index-percentage">{this.state.data?.percentageChange}%</div>
+                    </div>
                 </div>
-                <div className="additional-row">
-                    <div className="index-capitalization">{this._getCapitalizations(this.state.data?.usdCapitalization)}</div>
-                    <div className="index-percentage">{this.state.data?.percentageChange}%</div>
-                </div>
-            </div>
         );
     }
 
