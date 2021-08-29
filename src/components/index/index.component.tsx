@@ -1,59 +1,49 @@
-import React from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import './index.component.css'
 import {IIndex} from "../../core/interfaces/index.interface";
-import {IWithContract, IWithLoading} from "../../core/interfaces/common.interfaces";
+import {IWithContract} from "../../core/interfaces/common.interfaces";
+import {getIndex} from "../../core/consts/web3";
 
 type TIndexProps = { indexId: string } & Partial<IWithContract>;
-type TIndexState = { data?: IIndex } & IWithLoading;
 
-class IndexComponent extends React.Component<TIndexProps, TIndexState> {
-    constructor(props: TIndexProps) {
-        super(props);
-        this.state = {isLoading: true};
+function formateNumber(num: number, option: Intl.NumberFormatOptions): string {
+    return num || num === 0 ? num.toLocaleString('en', option) : '-';
+}
+
+const IndexComponent: FunctionComponent<TIndexProps> = ({indexId, contract}: TIndexProps) => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [data, setData] = useState<IIndex>(undefined);
+
+    const fetchData = async () => {
+        setData(await getIndex(contract, indexId))
+        setIsLoading(false);
     }
 
-    public async componentDidMount(): Promise<void> {
-        const data = await this._getIndexData(this.props.indexId);
-        this.setState({...this.state, data, isLoading: false});
-    }
+    useEffect(() => {
+        fetchData()
+    }, []);
 
-    public render(): JSX.Element {
-        return (
-            this.state.isLoading || !this.state.data
-                ? <div className="index-card" data-loaded={!this.state.isLoading}/>
-                : <div className="index-card" data-loaded="true">
-                    <div className="index-name">{this.state.data?.name}</div>
-                    <div className="index-conversation">$100
-                        / {this._getConversation(this.state.data?.usdPriceInCents)} ETH
-                    </div>
-                    <div className="additional-row">
-                        <div
-                            className="index-capitalization">${this._getCapitalizations(this.state.data?.usdCapitalization)}</div>
-                        <div className="index-percentage">{this.state.data?.percentageChange}%</div>
-                    </div>
+    const convOptions: Intl.NumberFormatOptions = {minimumFractionDigits: 0, maximumFractionDigits: 8}
+    const conversation = formateNumber(data?.usdPriceInCents ? +data.usdPriceInCents / 1000 : null, convOptions);
+
+    const capOptions: Intl.NumberFormatOptions = {minimumFractionDigits: 2, maximumFractionDigits: 2}
+    const capitalization = formateNumber(data?.usdCapitalization ? +data.usdCapitalization / 100 : null, capOptions);
+
+    return (
+        isLoading || !data
+            ? <div className="index-card" data-loaded={!isLoading}/>
+            : <div className="index-card" data-loaded="true">
+                <div className="index-name">{data?.name}</div>
+                <div className="index-conversation">$100
+                    / {conversation} ETH
                 </div>
-        );
-    }
-
-    private async _getIndexData(indexId: string): Promise<IIndex> {
-        return this.props.contract?.methods.getIndex(indexId).call()
-    }
-
-    private _getConversation(priceInCents?: string,
-                             options: Intl.NumberFormatOptions = {
-                                 minimumFractionDigits: 0,
-                                 maximumFractionDigits: 8
-                             }): string {
-        return priceInCents ? (+priceInCents / 1000).toLocaleString('en', options) : '-';
-    }
-
-    private _getCapitalizations(priceInCents?: string,
-                                options: Intl.NumberFormatOptions = {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2
-                                }): string {
-        return priceInCents ? (+priceInCents / 100).toLocaleString('en', options) : '-';
-    }
+                <div className="additional-row">
+                    <div
+                        className="index-capitalization">${capitalization}</div>
+                    <div className="index-percentage">{data?.percentageChange}%</div>
+                </div>
+            </div>
+    );
 }
 
 export default IndexComponent;
