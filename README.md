@@ -44,3 +44,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Some comments about test task
+
+Hi examiner, I was not sure how well I am following React best practices, but I tried to reproduce all my knowledge of good web applications (e.g. loaders, testing, clean code, etc.). Hopefully my code is clear enough that you can see the progress by checking `git` commit history.
