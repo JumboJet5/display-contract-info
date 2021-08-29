@@ -4,7 +4,11 @@
     position: relative;
 }
 
-.group:not([data-loaded])::after {
+.group[data-loaded="true"]:empty {
+    display: none;
+}
+
+.group[data-loaded="false"]::after {
     content: 'Group loading...';
 
     font-weight: 600;

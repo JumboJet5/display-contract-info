@@ -1,10 +1,13 @@
 import React from "react";
 import './index.component.css'
-import {Contract} from "web3-eth-contract";
 import {IIndex} from "../../core/interfaces/index.interface";
+import {IWithContract, IWithLoading} from "../../core/interfaces/common.interfaces";
 
-class IndexComponent extends React.Component<{ indexId: string, contract?: Contract }, { data?: IIndex, isLoading: boolean }> {
-    constructor(props: { indexId: string, contract?: Contract }) {
+type TIndexProps = { indexId: string } & IWithContract;
+type TIndexState = { data?: IIndex } & IWithLoading;
+
+class IndexComponent extends React.Component<TIndexProps, TIndexState> {
+    constructor(props: TIndexProps) {
         super(props);
         this.state = {isLoading: true};
     }
@@ -16,8 +19,8 @@ class IndexComponent extends React.Component<{ indexId: string, contract?: Contr
 
     public render(): JSX.Element {
         return (
-            this.state.isLoading
-                ? <div className="index-card"/>
+            this.state.isLoading || !this.state.data
+                ? <div className="index-card" data-loaded={!this.state.isLoading}/>
                 : <div className="index-card" data-loaded="true">
                     <div className="index-name">{this.state.data?.name}</div>
                     <div className="index-conversation">$100
@@ -25,7 +28,7 @@ class IndexComponent extends React.Component<{ indexId: string, contract?: Contr
                     </div>
                     <div className="additional-row">
                         <div
-                            className="index-capitalization">{this._getCapitalizations(this.state.data?.usdCapitalization)}</div>
+                            className="index-capitalization">${this._getCapitalizations(this.state.data?.usdCapitalization)}</div>
                         <div className="index-percentage">{this.state.data?.percentageChange}%</div>
                     </div>
                 </div>

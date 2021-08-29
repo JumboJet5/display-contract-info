@@ -9,8 +9,7 @@
     padding: 20px 20px 24px;
 }
 
-.index-card:not([data-loaded])::after {
-    content: 'Index loading...';
+.index-card::after {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -20,6 +19,14 @@
     display: grid;
     align-items: center;
     justify-content: center;
+}
+
+.index-card[data-loaded="false"]::after {
+    content: 'Index loading...';
+}
+
+.index-card[data-loaded="true"]:empty::after {
+    content: 'No data';
 }
 
 .index-name {

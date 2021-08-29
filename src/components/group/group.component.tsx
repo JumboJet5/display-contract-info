@@ -1,12 +1,14 @@
 import React from 'react';
-import {Contract} from 'web3-eth-contract';
 import './group.component.css'
 import IndexComponent from "../index/index.component";
 import {IGroup} from "../../core/interfaces/group.interface";
+import {IWithContract, IWithLoading} from "../../core/interfaces/common.interfaces";
 
+type TGroupProps = { groupId: string } & IWithContract;
+type TGroupState = { group?: IGroup } & IWithLoading;
 
-class GroupComponent extends React.Component<{ groupId: string, contract?: Contract }, { group?: IGroup, isLoading: boolean }> {
-    constructor(public props: { groupId: string, contract?: Contract }) {
+class GroupComponent extends React.Component<TGroupProps, TGroupState> {
+    constructor(public props: TGroupProps) {
         super(props);
         this.state = {isLoading: true};
     }
@@ -21,8 +23,8 @@ class GroupComponent extends React.Component<{ groupId: string, contract?: Contr
             ?.map(indexId => <IndexComponent indexId={indexId} contract={this.props.contract} key={indexId}/>)
         return (
 
-            this.state.isLoading
-                ? <div className="group"/>
+            this.state.isLoading || !this.state.group
+                ? <div className="group" data-loaded={!this.state.isLoading}/>
                 : <div className="group" data-loaded="true">
                     <div className="group-title">{this.state.group?.name}</div>
                     <div className="indexes-wrapper">{indexes}</div>
