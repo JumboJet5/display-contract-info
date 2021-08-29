@@ -3,7 +3,7 @@ import './index.component.css'
 import {IIndex} from "../../core/interfaces/index.interface";
 import {IWithContract, IWithLoading} from "../../core/interfaces/common.interfaces";
 
-type TIndexProps = { indexId: string } & IWithContract;
+type TIndexProps = { indexId: string } & Partial<IWithContract>;
 type TIndexState = { data?: IIndex } & IWithLoading;
 
 class IndexComponent extends React.Component<TIndexProps, TIndexState> {
