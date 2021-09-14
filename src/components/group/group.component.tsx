@@ -2,18 +2,16 @@ import React, { FunctionComponent, useMemo } from 'react';
 import './group.component.css'
 import IndexComponent from "../index/index.component";
 import { IGroup } from "../../core/interfaces/group.interface";
-import { IWithContract } from "../../core/interfaces/common.interfaces";
-import { Contract } from "web3-eth-contract";
 import useGroup from "../../hooks/group.hook";
 
-type TGroupProps = { groupId: string } & IWithContract;
+type TGroupProps = { groupId: string };
 
-const getIndexes = (contract: Contract, group: IGroup): JSX.Element[] =>
-  group?.indexes?.map(id => <IndexComponent indexId={id} contract={contract} key={id}/>) ?? []
+const getIndexes = (group: IGroup): JSX.Element[] =>
+  group?.indexes?.map(id => <IndexComponent indexId={id} key={id}/>) ?? []
 
-const GroupComponent: FunctionComponent<TGroupProps> = ({ groupId, contract }: TGroupProps) => {
-  const [group, , isLoading] = useGroup(contract, groupId);
-  const indexes = useMemo(() => getIndexes(contract, group), [contract, group]);
+const GroupComponent: FunctionComponent<TGroupProps> = ({ groupId }: TGroupProps) => {
+  const [group, , isLoading] = useGroup(groupId);
+  const indexes = useMemo(() => getIndexes(group), [group]);
 
   return (
     isLoading || !group

@@ -1,16 +1,15 @@
 import React, { FunctionComponent } from "react";
 import './index.component.css'
-import { IWithContract } from "../../core/interfaces/common.interfaces";
 import useIndex from "../../hooks/index.hook";
 
-type TIndexProps = { indexId: string } & Partial<IWithContract>;
+type TIndexProps = { indexId: string };
 
 function formateNumber(num: number, option: Intl.NumberFormatOptions): string {
   return num || num === 0 ? num.toLocaleString('en', option) : '-';
 }
 
-const IndexComponent: FunctionComponent<TIndexProps> = ({ indexId, contract }: TIndexProps) => {
-  const [data, , isLoading] = useIndex(contract, indexId);
+const IndexComponent: FunctionComponent<TIndexProps> = ({ indexId }: TIndexProps) => {
+  const [data, , isLoading] = useIndex(indexId);
 
   const convOptions: Intl.NumberFormatOptions = { minimumFractionDigits: 0, maximumFractionDigits: 8 }
   const conversation = formateNumber(data?.usdPriceInCents ? +data.usdPriceInCents / 1000 : null, convOptions);

@@ -15,7 +15,7 @@ export function getContract(): Promise<Contract> {
 }
 
 export function getGroupIds(contract: Contract): Promise<string[]> {
-    return contract.methods.getGroupIds().call();
+    return contract?.methods.getGroupIds().call();
 }
 
 export function getGroup(contract: Contract, groupId: string): Promise<IGroup> {

@@ -1,0 +1,23 @@
+.groups-wrapper {
+    min-height: 40px;
+    position: relative;
+}
+
+.groups-wrapper[data-loaded="false"]::after {
+    content: 'Groups loading...';
+
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(2px);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
